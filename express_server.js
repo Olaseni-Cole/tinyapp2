@@ -43,4 +43,20 @@ app.get("/urls/:id", (req, res) => {
   res.render("urls_show", templateVars);
 });
 
+app.post("/urls", (req, res) => {
+  console.log(req.body); // Log the POST request body to the console
+  res.send("Ok"); // Respond with 'Ok' (we will replace this)
+});
+
+function generateRandomString() {
+  const alphanumericCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let randomString = '';
+  for (let i = 0; i < 6; i++) {
+    randomString += alphanumericCharacters.charAt(Math.floor(Math.random() * alphanumericCharacters.length));
+  }
+  return randomString;
+}
+
+const randomString = generateRandomString();
+console.log(randomString);
 
