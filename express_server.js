@@ -50,6 +50,13 @@ app.post("/urls", (req, res) => {
   res.send("Ok"); // Respond with 'Ok' (we will replace this)
 });
 
+app.post("/urls/:id/delete", (req, res) => {
+  const urlId = req.params.id;
+  delete urlDatabase[urlId];
+
+  res.redirect("/urls"); 
+});
+
 app.get("/u/:id", (req, res) => {
   const longURL = urlDatabase[req.params.id];
 
@@ -67,4 +74,6 @@ function generateRandomString() {
 
 const randomString = generateRandomString();
 console.log(randomString);
+
+
 
