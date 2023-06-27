@@ -11,6 +11,20 @@ const urlDatabase = {
 
 app.use(express.urlencoded({ extended: true }));
 
+// Our database of users
+let data = {
+  "b2xVn2": {
+      id: "b2xVn2",
+      email: "user@example.com",
+      password: "$2a$10$kgyaDXX1IsqUW0LQKkobSuwsZhvnb6Xvavpxg29Ep3J9oGCoIBtcq", // "purple-monkey-dinosaur"
+  },
+  "9sm5xK": {
+      id: "9sm5xK",
+      email: "user2@example.com",
+      password: "$2a$10$LXPRQJXfvWkxSokQ/CM.9OOZo.OUjKQcdCHXHPyhYzOaJOnN5aCD2", // "dishwasher-funk"
+  },
+};
+
 app.get("/", (req, res) => {
   res.send("Hello!");
 });
@@ -63,7 +77,16 @@ app.get("/u/:id", (req, res) => {
   res.redirect(longURL);
 });
 
+app.get('/urls', (req, res) => {
+  const user = req.user;
+  
+  res.render('urls_index', { user: user });
+});
 
+app.get('/urls/:id', (req, res) => {
+  if (!users[req.session["user_id"]]) {
+    return res.status(401).send('Please log in');
+  }
 
 function generateRandomString() {
   const alphanumericCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -77,5 +100,4 @@ function generateRandomString() {
 const randomString = generateRandomString();
 console.log(randomString);
 
-
-
+};

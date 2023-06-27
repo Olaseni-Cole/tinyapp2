@@ -20,19 +20,19 @@
           <a class="nav-item nav-link" href="/login">Login</a>
           <a class="nav-item nav-link" href="/register">Register</a>
         <% } else { %>
-          <a class="collapse navbar-collapse" class="nav justify-content-end">Logged in as: <%= user.email %>&nbsp;&nbsp;</a>
-          <a href="/logout" class="btn btn-outline-dark" class="nav justify-content-end">Logout</a>
+          <span class="collapse navbar-collapse nav justify-content-end">Logged in as: <%= user.email %>&nbsp;&nbsp;</span>
+          <a href="/logout" class="btn btn-outline-dark nav justify-content-end">Logout</a>
         <% } %>
       </div>
     </div>
-    <% if (typrof user !== "undefined") { %>
+    <% if (typeof user !== "undefined") { %>
       <% if (user.email) { %>
         <span>Logged in as: <%= user.email %></span>
-    <form action="/logout" method="POST">
-      <input name="username" />
-      <button>Submit</button>
-    </form>
-    <% } %>
+        <form action="/logout" method="POST">
+          <input type="text" name="username" />
+          <button type="submit">Submit</button>
+        </form>
       <% } %>
+    <% } %>
   </nav>
 </header>
